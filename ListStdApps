@@ -1,0 +1,34 @@
+
+public class ListStdApps {
+	public static void main(String []args) {
+		Linklist example = new Linklist();
+		example.insertFirst("22","Boripat","Equipment System","B");
+		example.insertFirst("23","Chaisena","Equipment System","C");
+		example.insertFirst("24","Nattanon","Equipment System","A");
+		example.insertFirst("27","Yuttana","Equipment System","D+");
+		example.displayList();
+		SubjectLink cat = example.find("22");
+		if(cat != null)
+	  System.out.println("Found link with ID " + cat.ID);
+		else
+			System.out.println("Finding Link it's not found");
+		SubjectLink dog = example.delete("23");
+		
+		if(dog != null)
+			System.out.println(dog.ID + " is Deleted ");
+		
+		else
+			System.out.println("The  deleted list isn't match with the other");
+		System.out.println("------------------------------------------------");
+	
+		SubjectLink fox = example.insertFirst("24","Rose","Equipment System","B+");
+		if(fox != null)
+			System.out.println(fox.name +" is new student");
+		else
+			System.out.println("New Student isn't found");
+		example.displayList();
+		
+		
+	}
+
+}
