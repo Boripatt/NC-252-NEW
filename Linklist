@@ -1,0 +1,57 @@
+public class Linklist {
+	private SubjectLink first; // อ้างอิงถึงลิงค์แรกในรายการ
+    //-----------------------------------------------------
+	public Linklist() { // constructor
+		first = null; //ยังไม่มีลิงค์ในรายการ
+		
+	}
+	//--------------------------------------------------------
+	public SubjectLink insertFirst(String id,String name1,String unit1,String grade1) { //สร้าง method เพื่อใช้ในการ insert ข้อมูลเข้าไป
+		SubjectLink newSubjectLink = new SubjectLink(id,name1,unit1,grade1);
+		newSubjectLink.next = first; 
+		first = newSubjectLink; 
+		first.displaySubjectLink();
+		return first;
+	}
+	//----------------------------------------------------------------
+	public SubjectLink find(String  key) { // ค้นหาลิงค์ด้วยคีย์ที่ให้มาและถือว่าเป็นรายการที่ไม่ว่าง
+		SubjectLink current = first; // เริ่มที่แรก    
+		while(key.compareTo(current.ID) > 0  || key.compareTo(current.ID) < 0) { // 
+			if(current.next == null)//ถ้าสิ้นสุดรายการ
+				return null; // didn't find it
+			else // not end of list
+				current = current.next; // go to next link
+		}
+		return current; // หาข้อมูลในริส
+	}
+	//------------------------------------------------------------------
+	public SubjectLink delete(String  key) { // delete link with given key and assumes non-empty list
+		SubjectLink current = first; // search for link
+		SubjectLink previous = first;
+		while(key.compareTo(current.ID) > 0  || key.compareTo(current.ID) < 0) {
+			if(current.next == null)
+				return null; // ถ้าไม่เจอ didn't find it 
+			else {
+				previous = current; // go to next link
+				current = current.next;
+			}	
+		}  // found it 
+		if(current == first) // if first link
+				first = first.next; // change first
+			else  // otherwise
+				previous.next = current.next; // by pass it
+		return current;//เป็นเมดตอดลบข้อมุลในลิด
+	}
+	
+	public void displayList() {
+		System.out.println("Student List (First to Last):  ");
+		SubjectLink current = first;
+		while(current != null) {
+			current.displaySubjectLink();
+			current = current.next;
+		}
+		System.out.println("------------------------------------------------");
+	}
+	
+	
+} 
